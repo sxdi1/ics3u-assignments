@@ -1,4 +1,5 @@
-/* calculates average of 5 assignments
+/* *
+ * calculates average of 5 assignments
  * 
  * due date  20220408
  * @filename AverageCalculator
@@ -16,7 +17,7 @@ public class AverageCalculator {
 		DecimalFormat df = new DecimalFormat("###.##");
 
 		
-		double [] userMarks = new double [5];
+		double[] userMarks = new double[5];
 		double avg = 0;
 		double total = 0 ;
 
