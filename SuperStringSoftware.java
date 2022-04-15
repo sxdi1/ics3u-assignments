@@ -179,7 +179,7 @@ public class SuperStringSoftware extends JFrame {
 				if(firstString.equals(secondString)) {
 					outputIdentical.setText("They are identical!");
 				} else {
-					outputIdentical.setText("They are not identical");
+					outputIdentical.setText("They are not identical!");
 				}
 			}
 		});
@@ -201,7 +201,7 @@ public class SuperStringSoftware extends JFrame {
 		outputFound.setBounds(572, 516, 271, 16);
 		contentPane.add(outputFound);
 		
-		JButton findLetter = new JButton("Letter Found?");
+		JButton findLetter = new JButton("letter found?");
 		findLetter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -228,7 +228,7 @@ public class SuperStringSoftware extends JFrame {
 		outputChars.setBounds(649, 616, 110, 16);
 		contentPane.add(outputChars);
 		
-		JButton charIndex = new JButton("Characters 4 - 6");
+		JButton charIndex = new JButton("characters 4 - 6");
 		charIndex.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -248,7 +248,7 @@ public class SuperStringSoftware extends JFrame {
 		userReplace.setBounds(69, 712, 182, 26);
 		contentPane.add(userReplace);
 		
-		JButton replaceA = new JButton("Replaces A");
+		JButton replaceA = new JButton("replaces a");
 		replaceA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
