@@ -49,7 +49,6 @@ public class MathSubroutines {
 		double[] values = {n1, n2, n3, n4, n5};
 		Arrays.sort(values);
 		double med = values[2];
-		
 		return med;
 	}
 	
@@ -160,8 +159,10 @@ public class MathSubroutines {
     			double median = calcMed(n1,n2,n3,n4,n5);
     			System.out.println("The median of your five numbers is "+ median);
 
-    		} else if(decision == 7) {
+    		} else if(decision == 8) {
     		
+    		} else {
+    			System.out.println("Please enter a valid single digit option.");
     		}
     	}
     	
