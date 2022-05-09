@@ -1,6 +1,5 @@
-import java.util.Scanner;
-
 /**
+ * 
  * simple rock paper scissors game that returns game stats 
  * 
  * due date     20220506
@@ -8,6 +7,7 @@ import java.util.Scanner;
  * @author      Sadiksha Dahal
  *
  */
+import java.util.Scanner;
 
 public class RockPaperScissors {
 	
