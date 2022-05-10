@@ -1,13 +1,15 @@
 /**
  * 
- * simple rock paper scissors game that returns game stats 
+ * simple rock paper scissors game that returns game statistics 
  * 
  * due date     20220506
  * @filename    RockPaperScissors.java
  * @author      Sadiksha Dahal
  *
- */
+ **/
+
 import java.util.Scanner;
+
 
 public class RockPaperScissors {
 	
@@ -21,16 +23,17 @@ public class RockPaperScissors {
 	static int numMoveP;
 	static int numMoveS;
 	
-	static String [] gameResult = {"a", "b", "c", "d", "e"};
-	static String [] totalMoves = {"a", "b", "c", "d", "e"};
+	static String [] gameResult = {"", "", "", "", ""};
+	static String [] totalMoves = {"", "", "", "", ""};
 	
 	static final int NUM_ROUNDS = 5;
-
 	
 	static boolean running = true;
 	static boolean fiveRounds = false;
 	
+	
 	public static void displayMenu() {
+		
 		System.out.println("========================================");
 		System.out.println("\t Rock Paper Scissors!");
 		System.out.println("========================================");
@@ -47,33 +50,44 @@ public class RockPaperScissors {
 
 	}
 	
+	
 	public static String getUserMove() {
 		
 		System.out.println("Please enter your move ('rock', 'paper', 'scissors'):");
 		String userMove = userInput.next();
 		
 		return userMove;
-		
 	}
 	
+	
 	public static String getCompMove() {
-		String compMove = "";
-		int randMove = (int)Math.floor(Math.random()*(3-1+1)+1);
 		
-		if(randMove == 1) {
+		final int MIN = 1;
+		final int MAX = 3;
+		
+		String compMove = "";
+		int randMove = (int)Math.floor(Math.random()*(MAX)+MIN);
+		
+		if(randMove == MIN) {
+			
 			compMove = "Rock";
 			
-		} else if (randMove == 2) {
+		} else if (randMove == MAX) {
+			
 			compMove = "Paper";
 			
 		} else {
+			
 			compMove = "Scissors";
+			
 		}
 		
 		System.out.println("The computer chose: " + compMove);
+		
 		return compMove;
 	}
 
+	
 	public static String roundResult (String player, String comp) {
 		
 		String round = "";
@@ -81,50 +95,72 @@ public class RockPaperScissors {
 		if(player.equalsIgnoreCase("rock") && comp.equalsIgnoreCase("scissors")||
 		   player.equalsIgnoreCase("paper") && comp.equalsIgnoreCase("rock") || 
 		   player.equalsIgnoreCase("scissors") && comp.equals("paper")) {
+			
 			round = "Win";
+			System.out.println("This round was a " + round + " for you!");
 			
 		} else if(player.equalsIgnoreCase("scissors") && comp.equalsIgnoreCase("rock")||
 				  player.equalsIgnoreCase("rock") && comp.equalsIgnoreCase("paper") || 
 				  player.equalsIgnoreCase("paper") && comp.equals("scissors")) {
+			
 			round = "Loss";
-			
-		} else if(player.equalsIgnoreCase(comp)){
-			round = "Tie";
-			
-		} else{
-			System.out.println("You entered an invalid move! Please rerun the program.");
+			System.out.println("This round was a " + round + " for you!");
 
+		} else if(player.equalsIgnoreCase(comp)){
+			
+			round = "Tie";
+			System.out.println("This round was a " + round + " for you!");
+			
+		} else {
+			
+			System.out.println("You entered an invalid move! Please rerun the program.");
+			
 		}
 		
-		System.out.println("This round was a " + round + " for you!");
 		return round;
 	}
 	
+	
 	public static void moveStats(String [] array) {
+		
 		for(int i = 0; i < NUM_ROUNDS; i++) {
 			if(array[i].equalsIgnoreCase("rock")) {
+				
 				numMoveR++;
+				
 			} else if (array[i].equalsIgnoreCase("paper")) {
+				
 				numMoveP++;
+				
 			} else {
+				
 				numMoveS++;
+				
 			}
 		}
 		
+		System.out.println("=================================================");
 		System.out.println("Number of times you played rock: " + numMoveR);
 		System.out.println("Number of times you played paper: " + numMoveP);
 		System.out.println("Number of times you played scissors: " + numMoveS);
 		System.out.println("=================================================");
 	}
 	
+	
 	public static void gameStats(String [] array) {
 		for(int i = 0; i < NUM_ROUNDS; i ++) {
 			if(array[i].equalsIgnoreCase("Win")) {
+				
 				roundsWon++;
+				
 			} else if (array[i].equalsIgnoreCase("Loss")) {
+				
 				roundsLoss++;
+				
 			} else {
+				
 				roundsTie++;
+				
 			}
 		}
 		
@@ -134,27 +170,31 @@ public class RockPaperScissors {
 		System.out.println("=================================================");
 	}
 	
+	
 	public static String playAgain() {
+		
 		System.out.println("Do you want to play again? [Type 'Y' for yes or 'N' for no]");
 		String userReply = userInput.next();
 		
 		return userReply;
 	}
+	
+	
 	public static void main(String[] args) {
 
 		while(running) {
 			
 			displayMenu();
 				
-				for(int rounds = 0; rounds < NUM_ROUNDS; rounds++) {
+			for(int rounds = 0; rounds < NUM_ROUNDS; rounds++) {
 					
-					String userMove = getUserMove();					
-					String compMove = getCompMove();
-					String result = roundResult (userMove, compMove);
+				String userMove = getUserMove();					
+				String compMove = getCompMove();
+				String result = roundResult (userMove, compMove);
 					
-					totalMoves[rounds] = userMove;
-					gameResult[rounds] = result;
-				}
+				totalMoves[rounds] = userMove;
+				gameResult[rounds] = result;				
+			}
 			
 			moveStats(totalMoves);
 			gameStats(gameResult);
@@ -164,9 +204,13 @@ public class RockPaperScissors {
 			String newGame = playAgain();
 			
 			if(newGame.equalsIgnoreCase("Y")) {
+				
 				running = true;
+				
 			} else {
+				
 				System.out.println("Bye!");
+				
 			}
 				
 		}
