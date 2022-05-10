@@ -124,6 +124,7 @@ public class RockPaperScissors {
 	public static void moveStats(String [] array) {
 		
 		for(int i = 0; i < NUM_ROUNDS; i++) {
+			
 			if(array[i].equalsIgnoreCase("rock")) {
 				
 				numMoveR++;
@@ -148,7 +149,9 @@ public class RockPaperScissors {
 	
 	
 	public static void gameStats(String [] array) {
+		
 		for(int i = 0; i < NUM_ROUNDS; i ++) {
+			
 			if(array[i].equalsIgnoreCase("Win")) {
 				
 				roundsWon++;
