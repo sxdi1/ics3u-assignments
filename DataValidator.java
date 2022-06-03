@@ -27,8 +27,11 @@ public class DataValidator {
 			} catch (NumberFormatException e) {
 				
 				System.out.println("Sorry, that's an invalid input. Try again.");
+				valid = true; 
+				
 			}
 		}
+		
 		return value;
 	}
 
@@ -36,42 +39,56 @@ public class DataValidator {
 		
 		Scanner userInput = new Scanner(System.in);
 		
-		final int LOCATED = 1;
-		final int NOT_POS = 0;
+		final int STAGE_NUMS = 7;
+		final int ZERO = 0;
+		final int EVEN = 2;
 		
-		for(int stage = 0; stage < 5; stage++) {
+		
+		System.out.println("This data validation program will take you through six stages of prompts.\n"
+				+ "Once a stage has been completed, you will advance to the next stage.\n"
+				+ "After all six stages are complete, a congratulatory message will be displayed.");
+		
+		for(int stage = 0; stage < STAGE_NUMS; stage++) {
 			
 			switch(stage) {
 			
 				case 1:
 					
 					final int STRING_LEN = 6;
-					int decimal = 0;
 					
-					System.out.println("stage one");
-					System.out.println("Enter a string greater than six characters");
+					System.out.println("");
+					System.out.println("===========================================");
+					System.out.println(" \t   S T A G E     O N E ");
+					System.out.println("===========================================");
+
+					System.out.print("Enter a string greater than six characters: ");
 					String replyOne = userInput.next();
-					
-					if(replyOne.indexOf(".") > LOCATED) {	
-						decimal = 1;
-					}
-					
-					if((replyOne.length() - decimal) < STRING_LEN) {
+
+					if(replyOne.length() < STRING_LEN) {
 						stage--;
+						System.out.println("Not quite.");
+					} else {
+						System.out.println("Nice!");
 					}
 					break;
 					
 				case 2:
 					
-					final String UPPER_A = "A";
 					final String LOWER_A = "a";
 					
-					System.out.println("stage two");
-					System.out.println("Enter a string that contains at least one 'a'");
+					System.out.println("");
+					System.out.println("===========================================");
+					System.out.println(" \t   S T A G E     T W O ");
+					System.out.println("===========================================");
+					
+					System.out.print("Enter a string that contains at least one lowercase 'a': ");
 					String replyTwo = userInput.next();
 					
-					if((replyTwo.indexOf(UPPER_A) > LOCATED) || (replyTwo.indexOf(LOWER_A) > LOCATED)  ) {
+					if(!replyTwo.contains(LOWER_A)) {
 						stage--;
+						System.out.println("Oop! Give it another shot.");
+					} else {
+						System.out.println("Keep it up!");
 					}
 					break;
 					
@@ -83,14 +100,23 @@ public class DataValidator {
 					final int MAX_VAL3 = 15;
 					final int MIN_VAL3 = 5;
 					
-					System.out.println("stage three");
-					System.out.println("Enter a string between 5 and 15 characters long that doesn't contain a 'z'");
+					System.out.println("");
+					System.out.println("===========================================");
+					System.out.println(" \t   S T A G E     T H R E E ");
+					System.out.println("===========================================");
+					
+					System.out.print("Enter a string between 5 and 15 characters long that doesn't contain a 'z': ");
 					String replyThree = userInput.next();
 					
-					if(replyThree.length() < MIN_VAL3 || replyThree.length() > MAX_VAL3 && 
-					  (replyThree.indexOf(UPPER_Z) > LOCATED) && replyThree.indexOf(LOWER_Z) > LOCATED) {
+					if(replyThree.contains(LOWER_Z) || replyThree.contains(UPPER_Z)) {
 						stage--;
-					} 
+						System.out.println("Nice... try.");
+					} else if(replyThree.length() < MIN_VAL3 || replyThree.length() > MAX_VAL3) {
+						stage--;
+						System.out.println("Nice... try.");
+					} else {
+						System.out.println("Halfway done.");
+					}
 					break;
 					
 				case 4:
@@ -98,44 +124,71 @@ public class DataValidator {
 					final int MAX_VAL4 = 500;
 					final int MIN_VAL4 = 5;	
 					
-					System.out.println("stage four");
-					System.out.println("Enter an integer between 5 and 500");
+					System.out.println("");
+					System.out.println("===========================================");
+					System.out.println(" \t   S T A G E     F O U R ");
+					System.out.println("===========================================");
+
+					System.out.print("Enter an integer between 5 and 500: ");
 					String replyFour = userInput.next();
 					
 					int value4 = intChecker(replyFour);
 					if(value4 < MIN_VAL4 || value4 > MAX_VAL4) {
 						stage--;
+						System.out.println("Nope.");
+					} else {
+						System.out.println("Slay!");
 					}
 					break;
 					
 				case 5:
-										
-					System.out.println("stage 5");
-					System.out.println("Enter a negative integer");
+					
+					System.out.println("");					
+					System.out.println("===========================================");
+					System.out.println(" \t   S T A G E     F O U R ");
+					System.out.println("===========================================");
+					
+					System.out.print("Enter a negative integer: ");
 					String replyFive = userInput.next();
 					
 					int value5 = intChecker(replyFive);
-					if(value5 > NOT_POS) {
-						stage --;
+					if(value5 >= ZERO) {
+						stage--;
+						System.out.println("Try again");
+					} else {
+						System.out.println("As you should.");
 					}
 					break;
 				
 				case 6:
 					
-					System.out.println("stage 6");
-					System.out.println("Enter a positive, odd integer");
+					System.out.println("");
+					System.out.println("===========================================");
+					System.out.println(" \t   S T A G E     F O U R ");
+					System.out.println("===========================================");
+					
+					System.out.print("Enter a positive, odd integer: ");
 					String replySix = userInput.next();
 					
 					int value6 = intChecker(replySix);
-					if(value6 < NOT_POS && (value6%2)!= LOCATED) {
+					if(value6 < ZERO) {
 						stage--;
+						System.out.println("So close.");
+					} else if (value6 % EVEN == ZERO) {
+						stage--;
+						System.out.println("So close.");
+					} else {
+						System.out.println("Yassss!");
 					}
-					break;
-			}
-			
+					break;	
+			}	
 		}
 		
-		System.out.println("Congrats, you did it!");
+		System.out.println("");
+		System.out.println("===========================================");
+		System.out.println(" \t   C O N G R A T S !");
+		System.out.println("===========================================");
+		System.out.println("YOU DID IT!");
 
 	}
 }
