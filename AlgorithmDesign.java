@@ -48,7 +48,7 @@ public class AlgorithmDesign extends JFrame {
 		int temp;
 		boolean isPrime = true;
 		
-		for(int i = 2; i <= num; i++) {
+		for(int i = 2; i <= num / 2; i++) {
 			temp = num % i;
 			
 			if(temp == 0) {
@@ -58,9 +58,9 @@ public class AlgorithmDesign extends JFrame {
 		}
 		
 		if(isPrime == true) {
-			result = "prime";
+			result = "Prime.";
 		} else {
-			result = "not prime";
+			result = "Not prime.";
 		}
 		return result;
 	}
@@ -151,15 +151,15 @@ public class AlgorithmDesign extends JFrame {
 		
 		
 		JLabel result1 = new JLabel("--");
-		result1.setBounds(524, 153, 61, 16);
+		result1.setBounds(433, 153, 237, 16);
 		contentPane.add(result1);
 		
 		JLabel result2 = new JLabel("--");
-		result2.setBounds(524, 277, 61, 16);
+		result2.setBounds(433, 277, 237, 16);
 		contentPane.add(result2);
 		
 		JLabel result3 = new JLabel("--");
-		result3.setBounds(524, 381, 61, 16);
+		result3.setBounds(433, 381, 237, 16);
 		contentPane.add(result3);
 		
 		
@@ -167,12 +167,34 @@ public class AlgorithmDesign extends JFrame {
 		factorialOf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				int userNum = Integer.parseInt(factNum.getText());
-				int result = factOf(userNum);
-				result1.setText(Integer.toString(result));
 				
-			}
-		});
+				try {
+					int userNum = Integer.parseInt(factNum.getText());
+					
+					if (userNum < 0) {
+						result1.setText("Please only enter positive integers.");
+					}
+					
+					else {
+					int factorialResult = factOf(userNum);
+					result1.setText(Integer.toString(factorialResult));
+					}
+
+				} 
+				
+				catch (NumberFormatException ex) {
+					
+					try {
+						double factorialD = Double.parseDouble(factNum.getText());
+						result1.setText("Please only enter integers.");				
+					}
+					
+					catch (NumberFormatException exp) {	
+						result1.setText("Not a number.");
+					}
+				}
+			}	
+     	});
 		factorialOf.setBounds(314, 151, 89, 23);
 		contentPane.add(factorialOf);
 		
@@ -181,10 +203,32 @@ public class AlgorithmDesign extends JFrame {
 		primeOf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				int userNum = Integer.parseInt(primeNum.getText());
-				String result = isPrime(userNum);
-				result2.setText(result);
+				//String result = isPrime(userNum);
+				//result2.setText(result);
 				
+				try {
+					int userNum = Integer.parseInt(primeNum.getText());
+					
+					if (userNum < 0) {
+						result2.setText("Negative numbers cannot be prime.");
+					}
+										
+					else {
+					String primeResult = isPrime(userNum);
+					result2.setText(primeResult);
+					}
+				}
+				
+				catch (NumberFormatException ex) {		
+					try {
+						double primeNumD = Double.parseDouble(primeNum.getText());
+						result2.setText("Prime numbers are WHOLE numbers.");
+					}
+					
+					catch (NumberFormatException exp) {	
+						result2.setText("Not a number :(");
+					}
+				}
 			}
 		});
 		primeOf.setBounds(314, 275, 89, 23);
@@ -195,11 +239,24 @@ public class AlgorithmDesign extends JFrame {
 		fibonacciOf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				int userNum = Integer.parseInt(fibboNum.getText());
-				int result = fibboOf(userNum);
-				result3.setText(Integer.toString(result));
+				try {
+					int userNum = Integer.parseInt(fibboNum.getText());
+					int fibonacciResult = fibboOf(userNum);
+					result3.setText(Integer.toString(fibonacciResult));
+				}
 				
+				catch (NumberFormatException ex) {
+					try {
+						double fibonacciNumD = Double.parseDouble(fibboNum.getText());
+						result3.setText("Please only enter integers.");				
+					}
+					
+					catch (NumberFormatException exp) {	
+						result3.setText("Not a number!");
+					}
+				}
 			}
+			
 		});
 		fibonacciOf.setBounds(314, 380, 89, 23);
 		contentPane.add(fibonacciOf);
